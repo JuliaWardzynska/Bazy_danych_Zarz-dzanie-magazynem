@@ -278,7 +278,7 @@ CREATE TABLE Orders_Details (
 ```
 
 # Dodanie rekordów do powyższych tabel:
-Dodawanie rekordów do powyższych tabel jest zawarte w pliku fake_data.sql, gdzie znajdują się przykładowe skrypty dodające/poprawiające rekordy. W pliku o nazwie "bazy danych 2" zawarte są szczegółowe informacje dotyczące określonych tabel (i ich kolumn) w bazie danych.
+Dodawanie rekordów do powyższych tabel jest zawarte w pliku fake_data.sql, gdzie znajdują się przykładowe skrypty dodające/poprawiające rekordy. 
 
 # Transakcja przetwarzania danych: 
 
