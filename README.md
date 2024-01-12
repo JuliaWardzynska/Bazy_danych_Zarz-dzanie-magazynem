@@ -4,19 +4,97 @@ Repozytorium "Zarządzanie Magazynem" stanowi realizację zadania programistyczn
 # Zarządzanie magazynem Wstęp:
 Niniejsza baza danych ma na celu ułatwienia zarządzania zapasami magazynowymi oraz precyzyjnego monitorowania czasu dostaw przesyłek. Jej głównym celem jest możliwość monitorowania zapasów magazynu i śledzenia czasu dostawy/wysyłki towarów.
 
-Dane przechowywane w tej bazie obejmują informacje o produktach, lokalizacjach na magazy-
-nie, zamówieniach, klientach, pracownikach, dostawach i przewoźnikach
+Dane przechowywane w tej bazie obejmują informacje o produktach, lokalizacjach na magazynie, zamówieniach, klientach, pracownikach, dostawach i przewoźnikach
 
 # Tabele w bazie danych:
-- Tabela Products zawiera szczegółowe informacje o produktach,
-- tabela Locations zawiera informacje o lokalizacjach magazynu,
-- tabela Orders Details zawiera dodatkowe informacje o zamówieniach,
-- tabela Orders zawiera szczegółowe informacje o zamówieniach,
-- tabela Customers zawiera szczegółowe informacje o klientach,
-- tabela Employees zawiera szczegółowe informacje o pracownikach,
-- tabela Employees Transport zawiera informacje o środkach transportu pracowników,
-- tabela Delivery zawiera szczegółowe informacje o dostawach,
-- tabela Carrier zawiera szczegółowe informacje o kurierach.
+ 
+## Tabela Products zawiera szczegółowe informacje o produktach, takie jak:
+- ID lokalizacji na magazynie.
+- Nazwę produktu, a także jej marki.
+- Kategorie produktu wraz z opisem.
+- Kraj produkcji produktu.
+- Cena kupna oraz cena sprzedaży.
+- Dostępność produktu na magazynie - ilość.
+- Data wprowadzenia przedmiotu do systemu.
+- Data zaktualizowania towaru (tzn. jej dostępności).
+
+## Tabela Locations zawiera informacje o lokalizacjach magazynu,takie jak:
+- Numer sektora magazynu.
+- Numer półki.
+- Numer palety.
+- Numer piętra.
+- Pojemności/Ilości jaka dana lokalizacja może pomieścić
+
+## Tabela Orders Details zawiera dodatkowe informacje o zamówieniach, takie jak:
+- ID zamówienia.
+- ID produktu
+- Ilość danego produktu w zamówieniu.
+- Kwote za ilość danego produktu w zamówieniu.
+
+## Tabela Orders zawiera szczegółowe informacje o zamówieniach, takie jak:
+- ID zamówienia, klienta, dostawy oraz pracownika.
+- Date wejścia zamówienia do systemu.
+- Wyznaczony termin dostarczenia zamówienia.
+- Date wysyłki zamówienia.
+- Infromacje dotyczące adresu dostawy : ulica, miasto oraz kod pocztowy.
+- Wagę zamówienia.
+- Cena całego zamówienia.
+- Status zamówienia.
+- Sposób pakowania zamówienia: prezentowy czy zwykły karton.
+- Dane czy dostawa zamówienia jest płatna.
+
+Kolumna Total Order price została stworzona za pomocą poniższego kodu:
+```sql
+UPDATE Orders
+SET Total_Order_price = (
+SELECT SUM ( Sub_total )
+FROM Orders_Details
+WHERE Orders . OrderID = Orders_Details . OrderID
+) ;
+```
+
+Kolumna Free delivery została stworzona za pomocą poniższego kodu, który uznaje dostawe za
+darmową, jeśli kwota zamówienia przekracza 2000 tyś.
+
+```sql
+UPDATE Orders
+SET Free_delivery = ( CASE WHEN Total_Order_price > 2000 THEN 'Yes ' ELSE 'No '
+END ) ;
+
+```
+
+## Tabela Customers zawiera szczegółowe informacje o klientach, takie jak:
+- Imię i Nazwisko klienta.
+- Email oraz numer telefonu klienta.
+- Pełny adres zamieszkania klienta.
+- Typ klienta: stały lub nowy.
+
+## Tabela Employees zawiera szczegółowe informacje o pracownikach. W szczgeólności oprócz ich danych zamieszkania znajduje się również wiedza o:
+- odległości z pracy do domu,
+- data zatrudnienia,
+- wykonywany zawód,
+- miesięczne wynagrodzenie,
+- data rozpoczęcia i zakończenia urlopu,
+- typ pracownika: student czy osoba dorosła.
+
+## Tabela Employees Transport zawiera informacje o środkach transportu pracowników.Tabela zawiera:
+- Typ pojazdu,
+- marke pojazdu,
+- numer rejestracyjny pojazdu.
+
+## Tabela Delivery zawiera szczegółowe informacje o dostawach, takie jak:
+
+- Data dostarczenia zamówienia,
+- typ przesyłki: ekspresowa czy standardowa,
+- status przesyłki,
+- koszt przesyłki.
+
+## Tabela Carrier zawiera szczegółowe informacje o kurierach,  takie jak:
+
+- Imie i nazwisko kuriera,
+- numer telefonu kuriera,
+- informacje o pojeździe kuriera,
+- ocena kuriera
 
 # Stworzenie bazy danych za pomocą poniższego kodu:
 ```sql
@@ -189,8 +267,8 @@ CREATE TABLE Orders (
 
 ```sql
 CREATE TABLE Orders_Details (
-    OrderID					  INT,
-    ID_Products				INT,
+    OrderID					INT,
+    ID_Products					INT,
     Quantity					INT,
     Sub_total					MONEY
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
