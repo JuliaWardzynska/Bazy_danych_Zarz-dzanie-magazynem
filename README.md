@@ -25,8 +25,8 @@ go
 USE zad_prog_2;
 
 ```
-# Stworzenie wyżej przytoczonych tabel w bazie danych za pomocą poniższych kodów
-## Tabela Locations
+# Stworzenie wyżej przytoczonych tabel w bazie danych za pomocą poniższych kodów:
+## Tabela Locations:
 
 ```sql
 CREATE TABLE Locations(
@@ -40,7 +40,7 @@ CREATE TABLE Locations(
 );
 ```
 
-## Tabela Products
+## Tabela Products:
 
 ```sql
 CREATE TABLE Products (
@@ -62,7 +62,7 @@ CREATE TABLE Products (
 
 ```
 
-## Tabela Carrier
+## Tabela Carrier:
 
 
 ```sql
@@ -80,7 +80,7 @@ CREATE TABLE Carrier(
 ```
 
 
-## Tabela Delivery
+## Tabela Delivery:
 
 
 ```sql
@@ -95,7 +95,7 @@ CREATE TABLE Delivery (
 );
 ```
 
-## Tabela Customers
+## Tabela Customers:
 
 
 ```sql
@@ -114,7 +114,7 @@ CREATE TABLE Customers (
 ```
 
 
-## Tabela Employees_Transport
+## Tabela Employees_Transport:
 
 
 ```sql
@@ -128,7 +128,7 @@ CREATE TABLE Employees_Transport (
 ```
 
 
-## Tabela Employees
+## Tabela Employees:
 
 
 ```sql
@@ -157,7 +157,7 @@ CREATE TABLE Employees (
 ```
 
 
-## Tabela Orders
+## Tabela Orders:
 
 
 ```sql
@@ -184,7 +184,7 @@ CREATE TABLE Orders (
 
 ```
 
-## Tabela Orders_Details
+## Tabela Orders_Details:
 
 
 ```sql
