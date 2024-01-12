@@ -109,12 +109,12 @@ USE zad_prog_2;
 ```sql
 CREATE TABLE Locations(
     LocationID					INT PRIMARY KEY,
-    Sector						  NVARCHAR(50),			--#sektor na magazynie
-    Shelf						    NVARCHAR(50),			--#półka
-    Palette						  NVARCHAR(50),			--#paleta
-    levels							INT,				--#pietro
-    Capacity						INT,				--#Pojemność lub maksymalna ilość, jaką ta lokalizacja może pomieścić.
-	Unit_cap					    NVARCHAR(20),			--#jednostka
+    Sector					NVARCHAR(50),			
+    Shelf					NVARCHAR(50),			
+    Palette					NVARCHAR(50),			
+    levels					INT,				
+    Capacity					INT,				
+    Unit_cap					NVARCHAR(20),			
 );
 ```
 
@@ -123,18 +123,18 @@ CREATE TABLE Locations(
 ```sql
 CREATE TABLE Products (
 	ID_Products						INT PRIMARY KEY,
-	LocationID							INT,
+	LocationID						INT,
 	Name_							NVARCHAR(80),
 	Brand							NVARCHAR(20),
 	Group_							NVARCHAR(50),
-	Description_					NVARCHAR(MAX),
-	Country_Production				NVARCHAR(20),
-	Price_								MONEY,
-	Sell_Price							MONEY,
-	Condition							INT,				--ilość na magazynie
-	Unit							NVARCHAR(20),			-- jednostka
-	Start_Date_							DATE,				-- data wprowadzenia przedmiotu do systemu
-	Update_Date_						DATE				--data zaktualizowania towaru
+	Description_						NVARCHAR(MAX),
+	Country_Production					NVARCHAR(20),
+	Price_							MONEY,
+	Sell_Price						MONEY,
+	Condition						INT,				
+	Unit							NVARCHAR(20),			
+	Start_Date_						DATE,				
+	Update_Date_						DATE				
 	FOREIGN KEY (LocationID) REFERENCES Locations(LocationID)
 );
 
@@ -145,14 +145,14 @@ CREATE TABLE Products (
 
 ```sql
 CREATE TABLE Carrier(
-	CarrierID					    INT PRIMARY KEY,
-	Carrier_Name				  NVARCHAR(30),
-	Carrier_Last_Name		  NVARCHAR(30),
-	Phone_Number				  NVARCHAR(20),
-	Registration_number	  NVARCHAR(10),
-	Car_model					    NVARCHAR(40),
-	Company						    NVARCHAR(50),
-	Rating							  INT
+	CarrierID					INT PRIMARY KEY,
+	Carrier_Name				  	NVARCHAR(30),
+	Carrier_Last_Name		  		NVARCHAR(30),
+	Phone_Number				  	NVARCHAR(20),
+	Registration_number	  			NVARCHAR(10),
+	Car_model					NVARCHAR(40),
+	Company						NVARCHAR(50),
+	Rating						INT
 );
 
 ```
@@ -164,11 +164,11 @@ CREATE TABLE Carrier(
 ```sql
 CREATE TABLE Delivery (
     DeliveryID					  INT PRIMARY KEY,
-	  CarrierID						  INT,
-    DeliveryDate				  DATETIMEOFFSET,			-- Data dostarczenia
-	  Delivery_Type				  NVARCHAR(20),			-- Typ Dostawy
-	  Delivery_Status				NVARCHAR(20),			--Status Dostawy
-	  Delivery_Cost					MONEY,				-- Cena Dostawy
+	  CarrierID				  INT,
+    DeliveryDate				  DATETIMEOFFSET,			
+	  Delivery_Type				  NVARCHAR(20),			
+	  Delivery_Status			  NVARCHAR(20),			
+	  Delivery_Cost				  MONEY,				
 	  FOREIGN KEY (CarrierID) REFERENCES Carrier(CarrierID)
 );
 ```
@@ -180,13 +180,13 @@ CREATE TABLE Delivery (
 CREATE TABLE Customers (
     CustomerID					INT PRIMARY KEY,
     First_Name					NVARCHAR(50),
-    Last_Name					  NVARCHAR(50),
-    Email						    NVARCHAR(50),
+    Last_Name					NVARCHAR(50),
+    Email					NVARCHAR(50),
     Phone_number				NVARCHAR(20),
-    Customer_Address		NVARCHAR(100),
-	  City						    NVARCHAR(30),
-	  PostCode						INT,
-	  Customer_Type				NVARCHAR(10)			-- stały klient, czy nowy 
+    Customer_Address				NVARCHAR(100),
+    City					NVARCHAR(30),
+    PostCode					INT,
+    Customer_Type				NVARCHAR(10)			 
 );
 
 ```
@@ -199,8 +199,8 @@ CREATE TABLE Customers (
 CREATE TABLE Employees_Transport (
     TransportID					    INT PRIMARY KEY,
     Vehicle_type				    NVARCHAR(50),
-	  Vehicle_brand				    NVARCHAR(30),
-    Vehicle_plate_number		NVARCHAR(20)
+    Vehicle_brand				    NVARCHAR(30),
+    Vehicle_plate_number			    NVARCHAR(20)
 );
 
 ```
@@ -211,24 +211,24 @@ CREATE TABLE Employees_Transport (
 
 ```sql
 CREATE TABLE Employees (
-    EmployeeID					  INT PRIMARY KEY,
-	  TransportID						INT,
-    First_Name					  NVARCHAR(50),
-    Last_Name					    NVARCHAR(50),
-	  Birthday_Date					DATE,
-    Email						      NVARCHAR(50),
-    Phone_number				  NVARCHAR(20),
-	  Adress						    NVARCHAR(100),
-	  City						      NVARCHAR(30),
-	  PostCode						  INT,
-	  Work_distance					FLOAT,				-- WYRAŻONA W KM
-    Hire_Date						  DATE,
-    Occupation					  NVARCHAR(100),
-	  Wage							    MONEY,
-	  HolidaysDate_Start		DATE,
-	  HolidaysDate_End			DATE,
-	  Employee_type				  NVARCHAR(10),			-- wartości: student, normal
-	  FOREIGN KEY (TransportID) REFERENCES Employees_Transport(TransportID)
+    EmployeeID					  	INT PRIMARY KEY,
+    TransportID						INT,
+    First_Name					  	NVARCHAR(50),
+    Last_Name					    	NVARCHAR(50),
+    Birthday_Date					DATE,
+    Email						NVARCHAR(50),
+    Phone_number				  	NVARCHAR(20),
+    Adress						NVARCHAR(100),
+    City						NVARCHAR(30),
+    PostCode						INT,
+    Work_distance					FLOAT,				
+    Hire_Date						DATE,
+    Occupation					  	NVARCHAR(100),
+    Wage						MONEY,
+    HolidaysDate_Start					DATE,
+    HolidaysDate_End					DATE,
+    Employee_type				  	NVARCHAR(10),			
+    FOREIGN KEY (TransportID) REFERENCES Employees_Transport(TransportID)
 );
 
 
@@ -241,23 +241,23 @@ CREATE TABLE Employees (
 ```sql
 CREATE TABLE Orders (
     OrderId						      INT PRIMARY KEY,
-    CustomerId						  INT,
-	  DeliveryId						  INT,	
-	  EmployeeId						  INT,
-    OrderDate					      DATETIMEOFFSET,			-- wprowadzenie daty do systemu
-	  DueDate						      DATETIMEOFFSET,			--(Termin wykonania)
-	  ShippedDate					    DATETIMEOFFSET,			--	Data wysyłki
-	  Shipping_address			  VARCHAR(100),
-	  Shipping_city				    NVARCHAR(30),
-	  Shipping_postcode				INT,
-	  Order_Weight					  FLOAT,				-- Waga zamówienia
-    Total_Order_price		    MONEY,				-- cena zamówienia
-    Order_Status				    VARCHAR(10),			-- status zamówienia: closed, open czy annuled
-	  Wrapping					      NVARCHAR(20),			-- sposób zapakowania 
-	  Free_Delivery				    NVARCHAR(3),			--#Darmowa wysyłka jesli cena zamówienia przekracza 2000 zł
-	  FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
-	  FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
-	  FOREIGN KEY (DeliveryID) REFERENCES Delivery(DeliveryID)
+    CustomerId						      INT,
+    DeliveryId						      INT,	
+    EmployeeId					      	      INT,
+    OrderDate					      	      DATETIMEOFFSET,			
+    DueDate					              DATETIMEOFFSET,			
+    ShippedDate					              DATETIMEOFFSET,			
+    Shipping_address			                      VARCHAR(100),
+    Shipping_city				    	      NVARCHAR(30),
+    Shipping_postcode				              INT,
+    Order_Weight					      FLOAT,				
+    Total_Order_price		    			      MONEY,				
+    Order_Status				    	      VARCHAR(10),			
+    Wrapping					              NVARCHAR(20),			
+    Free_Delivery				              NVARCHAR(3),			
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (DeliveryID) REFERENCES Delivery(DeliveryID)
 );
 
 ```
@@ -272,7 +272,7 @@ CREATE TABLE Orders_Details (
     Quantity					INT,
     Sub_total					MONEY
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-	FOREIGN KEY (ID_Products) REFERENCES Products(ID_Products)
+    FOREIGN KEY (ID_Products) REFERENCES Products(ID_Products)
 );
 
 ```
