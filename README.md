@@ -45,7 +45,22 @@ CREATE TABLE Locations(
 ## Tabela Products
 
 ```sql
-
+CREATE TABLE Products (
+	ID_Products						INT PRIMARY KEY,
+	LocationID							INT,
+	Name_							NVARCHAR(80),
+	Brand							NVARCHAR(20),
+	Group_							NVARCHAR(50),
+	Description_					NVARCHAR(MAX),
+	Country_Production				NVARCHAR(20),
+	Price_								MONEY,
+	Sell_Price							MONEY,
+	Condition							INT,				--ilość na magazynie
+	Unit							NVARCHAR(20),			-- jednostka
+	Start_Date_							DATE,				-- data wprowadzenia przedmiotu do systemu
+	Update_Date_						DATE				--data zaktualizowania towaru
+	FOREIGN KEY (LocationID) REFERENCES Locations(LocationID)
+);
 
 ```
 
@@ -187,7 +202,7 @@ CREATE TABLE Orders_Details (
 ```
 
 # Dodanie rekordów do powyższych tabel:
-Dodawanie rekordów do powyższych tabel jest opisane w pliku fake_data.sql, gdzie znajdują się przykładowe skrypty dodające/poprawiające rekordy. W pliku opis_bazy_danych zawarte są szczegółowe informacje dotyczące kolumn określonych tabel w bazie danych.
+Dodawanie rekordów do powyższych tabel jest zawarte w pliku fake_data.sql, gdzie znajdują się przykładowe skrypty dodające/poprawiające rekordy. W pliku opis_bazy_danych zawarte są szczegółowe informacje dotyczące kolumn określonych tabel w bazie danych.
 
 # Transakcja przetwarzania danych: 
 
