@@ -36,7 +36,7 @@ Dane przechowywane w tej bazie obejmują informacje o produktach, lokalizacjach 
 - Date wejścia zamówienia do systemu.
 - Wyznaczony termin dostarczenia zamówienia.
 - Date wysyłki zamówienia.
-- Infromacje dotyczące adresu dostawy : ulica, miasto oraz kod pocztowy.
+- Informacje dotyczące adresu dostawy : ulica, miasto oraz kod pocztowy.
 - Wagę zamówienia.
 - Cena całego zamówienia.
 - Status zamówienia.
@@ -50,7 +50,7 @@ SET Total_Order_price = (
 SELECT SUM ( Sub_total )
 FROM Orders_Details
 WHERE Orders . OrderID = Orders_Details . OrderID
-) ;
+);
 ```
 
 Kolumna Free delivery została stworzona za pomocą poniższego kodu, który uznaje dostawe za
@@ -59,7 +59,7 @@ darmową, jeśli kwota zamówienia przekracza 2000 tyś.
 ```sql
 UPDATE Orders
 SET Free_delivery = ( CASE WHEN Total_Order_price > 2000 THEN 'Yes ' ELSE 'No '
-END ) ;
+END );
 
 ```
 
