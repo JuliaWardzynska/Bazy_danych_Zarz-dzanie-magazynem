@@ -23,7 +23,7 @@ tabela Carrier zawiera szczegółowe informacje o kurierach.
 # Stworzenie bazy danych za pomocą poniższego kodu:
 ```sql
 CREATE DATABASE zad_prog_2;
-
+go
 USE zad_prog_2;
 
 ```
