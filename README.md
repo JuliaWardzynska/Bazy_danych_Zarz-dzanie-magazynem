@@ -2,9 +2,7 @@
 Repozytorium "Zarządzanie Magazynem" stanowi realizację zadania programistycznego numer 2, którego celem jest stworzenie bazy danych.
 
 # Zarządzanie magazynem Wstęp:
-Niniejsza baza danych ma na celu ułatwienia zarządzania zapasami magazynowymi oraz precy-
-zyjnego monitorowania czasu dostaw przesyłek. Jej głównym celem jest możliwość monitorowania
-zapasów magazynu i śledzenia czasu dostawy/wysyłki towarów.
+Niniejsza baza danych ma na celu ułatwienia zarządzania zapasami magazynowymi oraz precyzyjnego monitorowania czasu dostaw przesyłek. Jej głównym celem jest możliwość monitorowania zapasów magazynu i śledzenia czasu dostawy/wysyłki towarów.
 
 Dane przechowywane w tej bazie obejmują informacje o produktach, lokalizacjach na magazy-
 nie, zamówieniach, klientach, pracownikach, dostawach i przewoźnikach
