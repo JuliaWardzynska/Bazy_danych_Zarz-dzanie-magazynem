@@ -277,8 +277,6 @@ CREATE INDEX IND_Sub_total ON Orders_Details(Sub_total);
 ```
 
 # Procedura składowana:
-Poniższy kod przedstawia procedurę składowaną zwracającą informacje o przychodzie ze sprzedaży 
-danej marki, której procentowy przychód ze sprzedaży był większy od wpisanego parametru @MinPercentage - to on decyduje, które marki zostaną wyświetlone.
 
 ```sql
 CREATE PROCEDURE Marka_przychód
